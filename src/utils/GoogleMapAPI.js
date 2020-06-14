@@ -1,6 +1,6 @@
 const API_KEY=process.env.VUE_APP_GOOGLE_MAP_API;
 const CALLBACK_NAME = 'googleMap';
-let inititalized = !!window.google;
+let initialized = !!window.google;
 
 let resolvePromise;
 let rejectPromise;
@@ -11,9 +11,9 @@ const initPromise = new Promise((resolve, reject) => {
 })
 
 function GoogleMapAPI () {
-    if (inititalized) return initPromise;
+    if (initialized) return initPromise;
 
-    inititalized = true;
+    initialized = true;
 
     window[CALLBACK_NAME] = () => {
         resolvePromise(window?.google);
