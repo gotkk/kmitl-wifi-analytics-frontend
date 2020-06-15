@@ -3,7 +3,7 @@
     <v-container>
       <v-row>
         <v-col>
-          <MapVisualize />
+          <MapVisualize v-if="map.length > 0" key="if_map"/>
         </v-col>
       </v-row>
     </v-container>
@@ -16,6 +16,21 @@ export default {
   name: "Visualize",
   components: {
     MapVisualize,
+  },
+  data() {
+    return {
+      map: []
+    }
+  },
+  created() {
+    this.$store
+      .dispatch("getLatLng")
+      .then((res) => {
+        this.map = [...res];
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
   },
 };
 </script>

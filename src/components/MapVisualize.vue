@@ -1,45 +1,23 @@
 <template>
   <div class="map-visualize">
     <div ref="map" class="google-map-style">
-      <span>Load Google Map failed!!</span>
+      <span>Loading Google Map...</span>
     </div>
   </div>
 </template>
 
 <script>
+import { mapState } from "vuex";
 import GoogleMapAPI from "../utils/GoogleMapAPI";
 export default {
   name: "MapVisualize",
-  data() {
-    return {
-      polygon_path: [
-        [
-          { lat: 13.729557, lng: 100.7771433 },
-          { lat: 13.7293733, lng: 100.777146 },
-          { lat: 13.7293811, lng: 100.7776047 },
-          { lat: 13.7295661, lng: 100.7776033 },
-          { lat: 13.729557, lng: 100.7771433 },
-        ],
-        [
-          { lat: 13.7301094, lng: 100.7768328 },
-          { lat: 13.729927, lng: 100.7768348 },
-          { lat: 13.7299283, lng: 100.7769226 },
-          { lat: 13.7298358, lng: 100.776928 },
-          { lat: 13.729841, lng: 100.7773759 },
-          { lat: 13.7301172, lng: 100.7773665 },
-          { lat: 13.7301094, lng: 100.7768328 },
-        ],
-      ],
-      building: [
-        "อาคารพระเทพ A",
-        "อาคารพระเทพ B",
-        "อาคารพระเทพ C",
-
-      ]
-    };
-  },
   mounted() {
     this.initialMap();
+  },
+  computed: {
+    ...mapState({
+      building: (state) => state?.visualize?.building,
+    }),
   },
   methods: {
     initialMap() {
@@ -50,20 +28,39 @@ export default {
           // mapTypeId: 'terrain'
         });
 
-        for (let i = 0, arri = this.polygon_path.length; i < arri; ++i) {
+        for (let i = 0, arri = this.building.length; i < arri; ++i) {
           let polygon = new google.maps.Polygon({
-            path: this.polygon_path[i],
-            strokeColor: "#FF0000",
-            strokeOpacity: 0.8,
+            path: this.building[i].location,
+            strokeColor: "#32a852",
+            strokeOpacity: 1,
             strokeWeight: 2,
-            fillColor: "#FF0000",
-            fillOpacity: 0.35,
-            building: this.building[i],
+            fillColor:
+              this.building[i].buildingCode === "AD-03" ? "#32a852" : "#ffff00",
+            fillOpacity: 0.5,
+            buildingCode: this.building[i].buildingCode,
+            buildingName: this.building[i].buildingName,
           });
           polygon.setMap(map);
           google.maps.event.addListener(polygon, "click", () => {
-            console.log(polygon.building);
+            this.handleSelectBuilding(
+              polygon.buildingCode,
+              polygon.buildingName
+            );
           });
+        }
+      });
+    },
+    handleSelectBuilding(buildingCode, buildingName) {
+      this.$fire({
+        title: "Do you want to visualize?",
+        text: `${buildingCode} : ${buildingName}`,
+        showCancelButton: true,
+        allowOutsideClick: false,
+        // type: "error",
+      }).then((e) => {
+        if (e.value) {
+          // this.$router.push({ path: `/visualize/${buildingCode}` });
+          this.$router.push({ name: "VisualizeData", params: { building_code: buildingCode } });
         }
       });
     },

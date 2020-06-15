@@ -1,27 +1,27 @@
 const axios = require("axios");
 
 const state = {
-  map: "",
+  building: "",
 };
 
 const getters = {
-  map: (state) => state.map,
+  building: (state) => state.building,
 };
 
 const mutations = {
-  setMap(state, map) {
-    state.map = map;
+  setBuilding(state, building) {
+    state.building = building;
   },
 };
 
 const actions = {
   getLatLng({ commit }) {
-    return Promise((resolve, reject) => {
+    return new Promise((resolve, reject) => {
       axios
-        .get( `${process.env.VUE_APP_VAP_BACKEND_APP}/location/lag_lng`)
+        .get( `${process.env.VUE_APP_BACKEND_APP}/location/lag_lng`)
         .then((res) => {
-          commit("setMap", res.data);
-          resolve(res.data);
+          commit("setBuilding", res.data.result);
+          resolve(res.data.result);
         })
         .catch((err) => {
           reject(err);
