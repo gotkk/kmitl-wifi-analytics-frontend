@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Visualize from '../views/Visualize.vue';
 import Test from '../views/Test.vue';
+import BuildindData from '../views/BuildindData.vue';
 
 Vue.use(VueRouter)
 
@@ -19,8 +20,8 @@ Vue.use(VueRouter)
   },
   {
     path: '/visualize/:building_code',
-    name: 'VisualizeData',
-    component: Test
+    name: 'BuildindData',
+    component: BuildindData
   },
   {
     path: '/test',

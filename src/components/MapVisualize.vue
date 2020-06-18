@@ -52,15 +52,15 @@ export default {
     },
     handleSelectBuilding(buildingCode, buildingName) {
       this.$fire({
-        title: "Do you want to visualize?",
+        title: "Do you want to visualize",
         text: `${buildingCode} : ${buildingName}`,
         showCancelButton: true,
         allowOutsideClick: false,
-        // type: "error",
+        type: "question",
       }).then((e) => {
         if (e.value) {
           // this.$router.push({ path: `/visualize/${buildingCode}` });
-          this.$router.push({ name: "VisualizeData", params: { building_code: buildingCode } });
+          this.$router.push({ name: "BuildindData", params: { building_code: buildingCode } });
         }
       });
     },
