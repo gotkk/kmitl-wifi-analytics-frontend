@@ -2,8 +2,13 @@
   <div class="visualize">
     <v-container>
       <v-row>
+        <v-col cols="12" class="d-flex justify-center">
+            <span>KMITL Building Map</span>
+        </v-col>
+      </v-row>
+      <v-row>
         <v-col>
-          <MapVisualize v-if="map.length > 0" key="if_map"/>
+          <MapVisualize v-if="map.length > 0" key="if_map" />
         </v-col>
       </v-row>
     </v-container>
@@ -19,8 +24,8 @@ export default {
   },
   data() {
     return {
-      map: []
-    }
+      map: [],
+    };
   },
   created() {
     this.$store
@@ -35,4 +40,4 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style scoped></style>

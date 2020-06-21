@@ -9,6 +9,9 @@
 <script>
 import { mapState } from "vuex";
 import GoogleMapAPI from "../utils/GoogleMapAPI";
+
+const {color} = require("../functions")
+
 export default {
   name: "MapVisualize",
   mounted() {
@@ -25,18 +28,19 @@ export default {
         let map = new google.maps.Map(this.$refs.map, {
           zoom: 17,
           center: { lat: 13.7298717, lng: 100.7761224 },
+          fullscreenControl: false,
+          mapTypeControl: true
           // mapTypeId: 'terrain'
         });
 
         for (let i = 0, arri = this.building.length; i < arri; ++i) {
           let polygon = new google.maps.Polygon({
             path: this.building[i].location,
-            strokeColor: "#32a852",
+            strokeColor: "#000000",
             strokeOpacity: 1,
-            strokeWeight: 2,
-            fillColor:
-              this.building[i].buildingCode === "AD-03" ? "#32a852" : "#ffff00",
-            fillOpacity: 0.5,
+            strokeWeight: 1,
+            fillColor: color.getColorPercent(this.building[i].avg_percent),
+            fillOpacity: 0.9,
             buildingCode: this.building[i].buildingCode,
             buildingName: this.building[i].buildingName,
           });
@@ -71,6 +75,6 @@ export default {
 <style scoped>
 .google-map-style {
   width: 100%;
-  height: 90vh;
+  height: 86vh;
 }
 </style>

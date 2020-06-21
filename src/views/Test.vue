@@ -38,7 +38,7 @@
             </div>
           </div>
         </v-col>
-        <v-col cols="12" md="6" v-if="1===2">
+        <v-col cols="12" md="6" v-if="1 === 2">
           <div class="block-menu-img-header">
             <span>KMITL WiFi</span>
           </div>
@@ -70,6 +70,13 @@
           </div>
         </v-col>
       </v-row>
+      <v-row>
+        <v-col cols="12">
+          <v-progress-linear :value="percent" height="40" color="#FFEE58">
+            <strong>{{ Math.round(percent * 100) / 100 }}%</strong>
+          </v-progress-linear>
+        </v-col>
+      </v-row>
     </v-container>
   </div>
 </template>
@@ -77,12 +84,17 @@
 <script>
 export default {
   name: "Test",
+  data() {
+    return {
+      percent: 43.12794
+    }
+  },
   methods: {
     handleVisualize() {
       this.$router.push("/visualize");
     },
   },
-  mounted () {
+  mounted() {
     console.log(this.$route.params?.building_code);
   },
 };
