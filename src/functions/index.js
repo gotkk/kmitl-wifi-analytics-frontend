@@ -1,5 +1,5 @@
-const color = require('./color')
+const { getColorPercent } = require("./getColorPercent");
 
 module.exports = {
-    color
-}
+  getColorPercent,
+};

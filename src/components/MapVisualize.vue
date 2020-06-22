@@ -1,7 +1,11 @@
 <template>
   <div class="map-visualize">
-    <div ref="map" class="google-map-style">
-      <span>Loading Google Map...</span>
+    <div class="d-flex justify-center align-center block-screen ">
+      <div class="elevation-6 block-google-map">
+        <div ref="map" class="google-map-style">
+          <span>Loading Google Map...</span>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -10,7 +14,7 @@
 import { mapState } from "vuex";
 import GoogleMapAPI from "../utils/GoogleMapAPI";
 
-const {color} = require("../functions")
+const { getColorPercent } = require("../functions");
 
 export default {
   name: "MapVisualize",
@@ -29,7 +33,7 @@ export default {
           zoom: 17,
           center: { lat: 13.7298717, lng: 100.7761224 },
           fullscreenControl: false,
-          mapTypeControl: true
+          mapTypeControl: true,
           // mapTypeId: 'terrain'
         });
 
@@ -39,7 +43,7 @@ export default {
             strokeColor: "#000000",
             strokeOpacity: 1,
             strokeWeight: 1,
-            fillColor: color.getColorPercent(this.building[i].avg_percent),
+            fillColor: getColorPercent(this.building[i].avg_percent),
             fillOpacity: 0.9,
             buildingCode: this.building[i].buildingCode,
             buildingName: this.building[i].buildingName,
@@ -64,7 +68,10 @@ export default {
       }).then((e) => {
         if (e.value) {
           // this.$router.push({ path: `/visualize/${buildingCode}` });
-          this.$router.push({ name: "BuildindData", params: { building_code: buildingCode } });
+          this.$router.push({
+            name: "BuildindData",
+            params: { building_code: buildingCode },
+          });
         }
       });
     },
@@ -73,8 +80,16 @@ export default {
 </script>
 
 <style scoped>
+.block-screen {
+  width: 100vw;
+  height: 100vh;
+}
 .google-map-style {
-  width: 100%;
-  height: 86vh;
+  width: 90vw;
+  height: 94vh;
+}
+.block-google-map{
+  width: 90vw;
+  height: 94vh;
 }
 </style>

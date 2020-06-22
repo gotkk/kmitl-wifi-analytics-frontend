@@ -53,7 +53,7 @@
 </template>
 
 <script>
-const { color } = require("../functions");
+const { getColorPercent } = require("../functions");
 import { mapState } from "vuex";
 export default {
   name: "FormTable",
@@ -84,7 +84,7 @@ export default {
       form: (state) => state?.form?.form,
     }),
     getColorPercent() {
-      return color.getColorPercent;
+      return getColorPercent;
     },
   },
   mounted() {
