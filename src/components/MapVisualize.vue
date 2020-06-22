@@ -69,7 +69,7 @@ export default {
         if (e.value) {
           // this.$router.push({ path: `/visualize/${buildingCode}` });
           this.$router.push({
-            name: "BuildindData",
+            name: "Building",
             params: { building_code: buildingCode },
           });
         }

@@ -3,7 +3,7 @@
     <v-container>
       <v-row>
         <v-col>
-          <v-card class="elevation-5">
+          <v-card class="elevation-6">
             <v-card-title>
               <div style="width: 100%">
                 <v-row>
