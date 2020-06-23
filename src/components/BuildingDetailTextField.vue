@@ -2,7 +2,8 @@
   <div class="building-detail-text-field">
     <span class="text-title">{{label}}</span>
     <div class="block-text-field">
-      <span>{{value}}</span>
+      <span v-if="percent" key="if_percent">{{Math.round(value * 100) / 100}} %</span>
+      <span v-else key="if_percent">{{value}}</span>
     </div>
   </div>
 </template>
@@ -18,6 +19,10 @@ export default {
       value: {
           type: [String, Number],
           default: "value is not available"
+      },
+      percent: {
+        type: Boolean,
+        default: false
       }
   },
 };

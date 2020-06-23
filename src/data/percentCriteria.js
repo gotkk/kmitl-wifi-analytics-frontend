@@ -1,32 +1,38 @@
 module.exports = {
   percentCriteria: [
     {
-      percent: "81 - 100 %",
+      min: 81,
+      max: 100,
       value: "Excellent",
       color: "#1E88E5",
     },
     {
-      percent: "61 - 80 %",
+      min: 61,
+      max: 80,
       value: "Good",
       color: "#43A047",
     },
     {
-      percent: "41 - 60 %",
+      min: 41,
+      max: 60,
       value: "Fair",
       color: "#FFEE58",
     },
     {
-      percent: "21 - 40 %",
+      min: 21,
+      max: 40,
       value: "Bad",
       color: "#FB8C00",
     },
     {
-      percent: "0 - 20 %",
+      min: 0,
+      max: 20,
       value: "Very Bad",
       color: "#E53935",
     },
     {
-      percent: "-",
+      min: null,
+      max: null,
       value: "No Data",
       color: "#546E7A",
     },

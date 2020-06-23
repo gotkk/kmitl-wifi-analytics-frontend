@@ -10,10 +10,16 @@
           </v-col>
         </v-row>
         <v-row v-for="(item_row, index_row) in buildingData" :key="index_row">
-          <v-col v-for="(item_col, index_col) in item_row" :key="index_col" cols="12" sm="6">
+          <v-col
+            v-for="(item_col, index_col) in item_row"
+            :key="index_col"
+            cols="12"
+            sm="6"
+          >
             <BuildingDetailTextField
               :label="item_col.label"
               :value="item_col.value"
+              :percent="item_col.percent"
             ></BuildingDetailTextField>
           </v-col>
         </v-row>

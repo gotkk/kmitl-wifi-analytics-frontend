@@ -20,7 +20,8 @@
               </div>
             </v-col>
             <v-col cols="5" sm="2" lg="1">
-              <span>{{ item.percent }}</span>
+              <span >{{item.min}} - {{item.max}}</span>
+              <span v-if="item.min !== null" key="if_percent_min">%</span>
             </v-col>
             <v-col cols="5" sm="2" lg="1">
               <span>{{ item.value }}</span>

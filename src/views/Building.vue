@@ -21,6 +21,7 @@ import FormTable from "../components/FormTable";
 import NoDataTable from "../components/NoDataTable";
 import BuildingDetail from "../components/BuildingDetail";
 import { mapState } from "vuex";
+const { mapBuildingData } = require("../functions");
 
 export default {
   name: "BuildingData",
@@ -68,46 +69,7 @@ export default {
           break;
         }
       }
-      let {
-        buildingCode,
-        buildingName,
-        max,
-        min,
-        avg_percent,
-        quantity,
-      } = building_select;
-      this.building_data = [
-        [
-          {
-            label: "Building Code",
-            value: buildingCode,
-          },
-          {
-            label: "Building Name",
-            value: buildingName,
-          },
-        ],
-        [
-          {
-            label: "Max",
-            value: max,
-          },
-          {
-            label: "Min",
-            value: min,
-          },
-        ],
-        [
-          {
-            label: "Average",
-            value: avg_percent,
-          },
-          {
-            label: "Form Data Collection Quantity",
-            value: quantity,
-          },
-        ],
-      ];
+      this.building_data = mapBuildingData(building_select);
     },
   },
 };

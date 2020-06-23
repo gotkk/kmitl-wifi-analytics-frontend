@@ -2,20 +2,16 @@ const { percentCriteria } = require("../data");
 
 module.exports = {
   getColorPercent: (percent) => {
-    if (percent && percent < 100 && percent >= 0) {
-      if (percent > 80) {
-        return percentCriteria[0].color;
-      } else if (percent > 60) {
-        return percentCriteria[1].color;
-      } else if (percent > 40) {
-        return percentCriteria[2].color;
-      } else if (percent > 20) {
-        return percentCriteria[3].color;
-      } else {
-        return percentCriteria[4].color;
+    if(percent===null){
+      return percentCriteria[percentCriteria.length-1].color;
+    }
+    for (let i = 0, arri = percentCriteria.length; i < arri; ++i) {
+      if (
+        percent >= percentCriteria[i].min &&
+        percent <= percentCriteria[i].max
+      ) {
+        return percentCriteria[i].color;
       }
-    } else {
-      return percentCriteria[5].color;
     }
   },
 };
