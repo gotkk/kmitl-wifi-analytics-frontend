@@ -1,7 +1,7 @@
-const { getColorPercent } = require("./getColorPercent");
-const { mapBuildingData } = require("./mapBuildingData");
+import getColorPercent from "./getColorPercent";
+import mapBuildingData from "./mapBuildingData";
 
-module.exports = {
+export default {
   getColorPercent,
   mapBuildingData,
 };

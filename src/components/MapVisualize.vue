@@ -13,8 +13,7 @@
 <script>
 import { mapState } from "vuex";
 import GoogleMapAPI from "../utils/GoogleMapAPI";
-
-const { getColorPercent } = require("../functions");
+import Fn from "../functions";
 
 export default {
   name: "MapVisualize",
@@ -43,7 +42,7 @@ export default {
             strokeColor: "#000000",
             strokeOpacity: 1,
             strokeWeight: 1,
-            fillColor: getColorPercent(this.building[i].avg_percent),
+            fillColor: Fn.getColorPercent(this.building[i].avg_percent),
             fillOpacity: 0.9,
             buildingCode: this.building[i].buildingCode,
             buildingName: this.building[i].buildingName,
@@ -84,7 +83,7 @@ export default {
   width: 90vw;
   height: 94vh;
 }
-.block-google-map{
+.block-google-map {
   width: 90vw;
   height: 94vh;
 }

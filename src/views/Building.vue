@@ -3,12 +3,15 @@
     <BuildingDetail
       :building-data="building_data"
       v-if="form_loaded"
-      key="if_building"
+      key="if-building"
     />
-    <FormTable v-if="form_loaded && form.length > 0" key="if_form" />
+    <v-container>
+      <ThePercentageCriteria :percent-list="percentList" />
+    </v-container>
+    <FormTable v-if="form_loaded && form.length > 0" key="if-form" />
     <NoDataTable
       v-else-if="form_loaded"
-      key="if_form"
+      key="if-form"
       title="Form Data Collection"
       content-type="the building code"
       :content="this.building_code"
@@ -20,8 +23,10 @@
 import FormTable from "../components/FormTable";
 import NoDataTable from "../components/NoDataTable";
 import BuildingDetail from "../components/BuildingDetail";
+import ThePercentageCriteria from "../components/ThePercentageCriteria";
 import { mapState } from "vuex";
-const { mapBuildingData } = require("../functions");
+import Fn from "../functions";
+const { percentCriteria } = require("../data");
 
 export default {
   name: "BuildingData",
@@ -29,6 +34,7 @@ export default {
     FormTable,
     NoDataTable,
     BuildingDetail,
+    ThePercentageCriteria,
   },
   data() {
     return {
@@ -45,6 +51,9 @@ export default {
     ...mapState({
       building: (state) => state.visualize?.building,
     }),
+    percentList() {
+      return percentCriteria;
+    },
   },
   methods: {
     initialBuildingData() {
@@ -69,7 +78,7 @@ export default {
           break;
         }
       }
-      this.building_data = mapBuildingData(building_select);
+      this.building_data = Fn.mapBuildingData(building_select);
     },
   },
 };

@@ -1,15 +1,19 @@
 <template>
   <div class="visualize">
-    <div v-if="map_loaded" key="if_map">
+    <div v-if="map_loaded" key="if-map">
       <MapVisualize />
-      <MapVisualizeDetail :percent-list="percentList" />
+      <div class="d-flex justify-center block-detail-layout">
+        <div class="block-detail">
+          <ThePercentageCriteria :percent-list="percentList" />
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 import MapVisualize from "../components/MapVisualize";
-import MapVisualizeDetail from "../components/MapVisualizeDetail";
+import ThePercentageCriteria from "../components/ThePercentageCriteria";
 
 const { percentCriteria } = require("../data");
 
@@ -17,12 +21,12 @@ export default {
   name: "Visualize",
   components: {
     MapVisualize,
-    MapVisualizeDetail,
+    ThePercentageCriteria,
   },
   data() {
     return {
       map: [],
-      map_loaded: false
+      map_loaded: false,
     };
   },
   created() {
@@ -36,7 +40,7 @@ export default {
       })
       .finally(() => {
         this.map_loaded = true;
-      })
+      });
   },
   computed: {
     percentList() {
@@ -46,4 +50,13 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.block-detail-layout {
+  width: 100vw;
+  margin-bottom: 3vh;
+}
+.block-detail {
+  width: 90vw;
+  height: 100%;
+}
+</style>

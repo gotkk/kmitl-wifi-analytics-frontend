@@ -1,5 +1,5 @@
 <template>
-  <div class="form-table">
+  <div class="building-table">
     <v-container>
       <v-row>
         <v-col>
@@ -66,7 +66,7 @@ import { mapState } from "vuex";
 import Fn from "../functions";
 
 export default {
-  name: "FormTable",
+  name: "BuildingTable",
   data() {
     return {
       search_value: "",
