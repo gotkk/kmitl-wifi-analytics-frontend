@@ -26,7 +26,7 @@
             <v-data-table
               :headers="headers"
               :items="form"
-              :items-per-page="5"
+              :items-per-page="15"
               :search="search_value"
               @click:row="handleSelect"
             >

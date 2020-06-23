@@ -80,10 +80,6 @@ export default {
 </script>
 
 <style scoped>
-.block-screen {
-  width: 100vw;
-  height: 100vh;
-}
 .google-map-style {
   width: 90vw;
   height: 94vh;

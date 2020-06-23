@@ -77,24 +77,54 @@
           </v-progress-linear>
         </v-col>
       </v-row>
+      <v-row>
+        <v-col><canvas ref="myChart"></canvas></v-col>
+      </v-row>
     </v-container>
   </div>
 </template>
 
 <script>
+import Chart from "chart.js";
+
 export default {
   name: "Test",
   data() {
     return {
-      percent: 43.12794
-    }
+      percent: 43.12794,
+    };
   },
   methods: {
     handleVisualize() {
       this.$router.push("/visualize");
     },
+    initialChart() {
+      let el = this.$refs.myChart;
+      new Chart(el, {
+        // type: "bar",
+        type: "horizontalBar",
+        data: {
+          labels: ["Max", "Average", "Min"],
+          datasets: [
+            {
+              label: "KMITL All WiFi",
+              data: [98.454548, 55.3645, 16.1234],
+              borderColor: "#000000",
+              borderWidth: 2,
+              backgroundColor: "rgba(190,140,16,0.6)",
+              fill: true,
+              minBarLength: 0.8,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+        },
+      });
+    },
   },
   mounted() {
+    this.initialChart();
     console.log(this.$route.params?.building_code);
   },
 };

@@ -20,3 +20,9 @@ export default {
 };
 </script>
 
+<style>
+.block-screen {
+  width: 100vw;
+  height: 100vh;
+}
+</style>
