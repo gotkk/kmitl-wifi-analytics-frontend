@@ -15,10 +15,10 @@ const mutations = {
 };
 
 const actions = {
-  getSignalDbmData({ commit }, building_code, form_id) {
+  getSignalDbmData({ commit }, data) {
     return new Promise((resolve, reject) => {
       axios
-        .get(`${process.env.VUE_APP_BACKEND_APP}/signal/dbm/${building_code}/${form_id}`)
+        .get(`${process.env.VUE_APP_BACKEND_APP}/signal/dbm/${data.building_code}/${data.form_id}`)
         .then((res) => {
           commit("setDbm", res.data.result);
           resolve(res.data.result);

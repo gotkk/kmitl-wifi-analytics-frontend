@@ -70,8 +70,17 @@ export default {
         },
         options: {
           responsive: true,
+          onClick: this.handleClick,
         },
       });
+    },
+    handleClick(c, i) {
+      let e = i[0];
+      console.log(e._index);
+      var x_value = this.data.labels[e._index];
+      var y_value = this.data.datasets[0].data[e._index];
+      console.log(x_value);
+      console.log(y_value);
     },
   },
 };

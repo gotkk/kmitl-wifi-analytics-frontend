@@ -1,5 +1,5 @@
 <template>
-  <div class="building-table">
+  <div class="signal-dbm-table">
     <v-container>
       <v-row>
         <v-col>
@@ -8,7 +8,7 @@
               <div style="width: 100%">
                 <v-row>
                   <v-col cols="12" sm="6">
-                    <span>Form Data Collection</span>
+                    <span>Signal dbm</span>
                   </v-col>
                   <v-col cols="12" sm="6">
                     <v-text-field
@@ -25,30 +25,20 @@
             </v-card-title>
             <v-data-table
               :headers="headers"
-              :items="form"
+              :items="dbm"
               :items-per-page="15"
               :search="search_value"
               @click:row="handleSelect"
             >
-              <template v-slot:item.average_percent="{ item }">
-                <!-- <v-chip
-                  v-if="item.average_percent"
-                  :color="getColorPercent(item.average_percent)"
-                  dark
-                >
-                  {{ Math.round(item.average_percent * 100) / 100 }} %
-                </v-chip> -->
+              <template v-slot:item.percent="{ item }">
                 <div style="width: 150px">
                   <v-progress-linear
-                    :value="item.average_percent"
+                    :value="item.percent"
                     height="28"
-                    :color="getColorPercent(item.average_percent)"
+                    :color="getColorPercent(item.percent)"
                   >
                     <span class="text-percent"
-                      >{{
-                        Math.round(item.average_percent * 100) / 100
-                      }}
-                      %</span
+                      >{{ Math.round(item.percent * 100) / 100 }} %</span
                     >
                   </v-progress-linear>
                 </div>
@@ -66,32 +56,36 @@ import { mapState } from "vuex";
 import Fn from "../functions";
 
 export default {
-  name: "BuildingTable",
+  name: "SignalDbmTable",
   data() {
     return {
       search_value: "",
       headers: [
-        { text: "Percent", value: "average_percent", class: "grey lighten-2" },
-        { text: "Form ID", value: "form_id", class: "grey lighten-2" },
-        { text: "Timestamp", value: "timestamp", class: "grey lighten-2" },
-        {
-          text: "Building Code",
-          value: "building_code",
-          class: "grey lighten-2",
-        },
-        {
-          text: "Building Name",
-          value: "building_name",
-          class: "grey lighten-2",
-        },
-        { text: "Floor", value: "floor", class: "grey lighten-2" },
-        { text: "Detail", value: "detail", class: "grey lighten-2" },
+        { text: "Percentage", value: "percent", class: "grey lighten-2" },
+        // { text: "Form ID", value: "form_id", class: "grey lighten-2" },
+        // { text: "Timestamp", value: "timestamp", class: "grey lighten-2" },
+        // {
+        //   text: "Building Code",
+        //   value: "building_code",
+        //   class: "grey lighten-2",
+        // },
+        // {
+        //   text: "Building Name",
+        //   value: "building_name",
+        //   class: "grey lighten-2",
+        // },
+        // { text: "Floor", value: "floor", class: "grey lighten-2" },
+        // { text: "Detail", value: "detail", class: "grey lighten-2" },
+        { text: "SSID", value: "ssid", class: "grey lighten-2" },
+        { text: "Mac Address", value: "mac_address", class: "grey lighten-2" },
+        { text: "Chanel", value: "chanel", class: "grey lighten-2" },
+        { text: "dbm", value: "dbm", class: "grey lighten-2" },
       ],
     };
   },
   computed: {
     ...mapState({
-      form: (state) => state?.form?.form,
+      dbm: (state) => state?.signal?.dbm,
     }),
     getColorPercent() {
       return Fn.getColorPercent;

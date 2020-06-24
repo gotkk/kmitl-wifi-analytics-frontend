@@ -1,4 +1,4 @@
-function mapBuildingData(building) {
+function mapFormData(building) {
   let {
     buildingCode,
     buildingName,
@@ -7,7 +7,7 @@ function mapBuildingData(building) {
     avg_percent,
     quantity,
   } = building;
-  let building_data = [
+  let form_data = [
     [
       {
         label: "Building Code",
@@ -34,18 +34,20 @@ function mapBuildingData(building) {
     ],
     [
       {
-        label: "Average of Access Point dbm",
-        value: avg_percent,
-        percent: true,
-      },
-      {
         label: "Form Data Collection Quantity",
         value: quantity,
         percent: false,
+        select: false,
+      },
+      {
+        label: "Building Percentage (Average)",
+        value: avg_percent,
+        percent: true,
+        select: false,
       },
     ],
   ];
-  return building_data;
+  return form_data;
 }
 
-export default mapBuildingData;
+export default mapFormData;

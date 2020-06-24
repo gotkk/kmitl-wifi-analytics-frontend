@@ -25,7 +25,7 @@
             </v-card-title>
             <v-data-table
               :headers="headers"
-              :items="form"
+              :items="filter_form"
               :items-per-page="15"
               :search="search_value"
               @click:row="handleSelect"
@@ -44,14 +44,21 @@
                     height="28"
                     :color="getColorPercent(item.average_percent)"
                   >
-                    <span class="text-percent"
-                      >{{
-                        Math.round(item.average_percent * 100) / 100
-                      }}
-                      %</span
-                    >
+                    <span class="text-percent">
+                      {{ Math.round(item.average_percent * 100) / 100 }} %
+                    </span>
                   </v-progress-linear>
                 </div>
+              </template>
+              <template v-slot:item.max="{ item }">
+                <v-chip v-if="item.max" :color="getColorPercent(item.max)" dark>
+                  {{ item.max }} %
+                </v-chip>
+              </template>
+              <template v-slot:item.min="{ item }">
+                <v-chip v-if="item.min" :color="getColorPercent(item.min)" dark>
+                  {{ item.min }} %
+                </v-chip>
               </template>
             </v-data-table>
           </v-card>
@@ -71,34 +78,36 @@ export default {
     return {
       search_value: "",
       headers: [
-        { text: "Percent", value: "average_percent", class: "grey lighten-2" },
+        { text: "Percentage (average)", value: "average_percent", class: "grey lighten-2" },
         { text: "Form ID", value: "form_id", class: "grey lighten-2" },
         { text: "Timestamp", value: "timestamp", class: "grey lighten-2" },
-        {
-          text: "Building Code",
-          value: "building_code",
-          class: "grey lighten-2",
-        },
-        {
-          text: "Building Name",
-          value: "building_name",
-          class: "grey lighten-2",
-        },
+        // {
+        //   text: "Building Code",
+        //   value: "building_code",
+        //   class: "grey lighten-2",
+        // },
+        // {
+        //   text: "Building Name",
+        //   value: "building_name",
+        //   class: "grey lighten-2",
+        // },
         { text: "Floor", value: "floor", class: "grey lighten-2" },
         { text: "Detail", value: "detail", class: "grey lighten-2" },
+        { text: "Max", value: "max", class: "grey lighten-2" },
+        { text: "Min", value: "min", class: "grey lighten-2" },
       ],
     };
   },
   computed: {
     ...mapState({
-      form: (state) => state?.form?.form,
+      filter_form: (state) => state?.form?.filter_form,
     }),
     getColorPercent() {
       return Fn.getColorPercent;
     },
   },
   mounted() {
-    // console.log(this.getColor2.getColor);
+    console.log(this.form);
   },
   methods: {
     handleSelect(data) {

@@ -65,20 +65,22 @@ export default {
         .dispatch("getFormData", this.building_code)
         .then((res) => {
           this.form = [...res];
-          this.form_loaded = true;
         })
         .catch((err) => {
           console.log(err.message);
+        })
+        .finally(() => {
+          this.form_loaded = true;
         });
 
       let building_select = {};
       for (let i = 0, arri = this.building.length; i < arri; ++i) {
         if (this.building[i].buildingCode === this.building_code) {
-          building_select = this.building[i];
+          building_select = { ...this.building[i] };
           break;
         }
       }
-      this.building_data = Fn.mapBuildingData(building_select);
+      this.building_data = Fn.mapFormData(building_select);
     },
   },
 };
