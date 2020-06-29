@@ -57,10 +57,20 @@ export default {
   },
   methods: {
     initialBuildingData() {
-      if (this.$store.getters.building === "") {
-        this.$router.push("/visualize");
-      }
       this.building_code = this.$router.history.current.params.building_code;
+      if (this.$store.getters.building === "") {
+        // this.$router.push("/visualize");
+        this.$store
+          .dispatch("getLatLng")
+          .then((res) => {
+            this.getBuildingSelect([...res]);
+          })
+          .catch((err) => {
+            console.log(err.message);
+          });
+      } else {
+        this.getBuildingSelect(this.building);
+      }
       this.$store
         .dispatch("getFormData", this.building_code)
         .then((res) => {
@@ -72,10 +82,11 @@ export default {
         .finally(() => {
           this.form_loaded = true;
         });
-
+    },
+    getBuildingSelect(building) {
       let building_select = {};
-      for (let i = 0, arri = this.building.length; i < arri; ++i) {
-        if (this.building[i].buildingCode === this.building_code) {
+      for (let i = 0, arri = building.length; i < arri; ++i) {
+        if (building[i].buildingCode === this.building_code) {
           building_select = { ...this.building[i] };
           break;
         }

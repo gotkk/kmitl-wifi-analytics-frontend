@@ -106,12 +106,8 @@ export default {
       return Fn.getColorPercent;
     },
   },
-  mounted() {
-    console.log(this.form);
-  },
   methods: {
     handleSelect(data) {
-      console.log(data);
       let { building_code, form_id } = data;
       this.$router.push({
         name: "Form",

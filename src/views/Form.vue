@@ -18,7 +18,7 @@
 <script>
 import ThePercentageCriteria from "../components/ThePercentageCriteria";
 import SignalDbmDetail from "../components/SignalDbmDetail";
-import SignalDbmTable from '../components/SignalDbmTable';
+import SignalDbmTable from "../components/SignalDbmTable";
 import { mapState } from "vuex";
 import Fn from "../functions";
 const { percentCriteria } = require("../data");
@@ -52,15 +52,26 @@ export default {
   },
   methods: {
     initialFormData() {
-      if (this.$store.getters.form === "") {
-        this.$router.push("/visualize");
-      }
       this.building_code = this.$router.history.current.params.building_code;
       this.form_id = this.$router.history.current.params.form_id;
+      if (this.$store.getters.form === "") {
+        // this.$router.push("/visualize");
+        this.$store
+          .dispatch("getFormData", this.building_code)
+          .then((res) => {
+            this.getFormSelect([...res]);
+            // console.log(res);
+          })
+          .catch((err) => {
+            console.log(err.message);
+          });
+      } else {
+        this.getFormSelect(this.form);
+      }
       let data = {
         building_code: this.building_code,
-        form_id: this.form_id
-      }
+        form_id: this.form_id,
+      };
       this.$store
         .dispatch("getSignalDbmData", data)
         .then((res) => {
@@ -72,11 +83,12 @@ export default {
         .finally(() => {
           this.signal_loaded = true;
         });
-
+    },
+    getFormSelect(form) {
       let form_select = {};
-      for (let i = 0, arri = this.form.length; i < arri; ++i) {
-        if (this.form[i].form_id === this.form_id) {
-          form_select = { ...this.form[i] };
+      for (let i = 0, arri = form.length; i < arri; ++i) {
+        if (form[i].form_id === this.form_id) {
+          form_select = { ...form[i] };
           break;
         }
       }

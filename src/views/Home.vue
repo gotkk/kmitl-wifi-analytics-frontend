@@ -101,16 +101,15 @@ export default {
 }
 .block-logo-header {
   height: 16vh;
-  margin-top: 2vh;
-  margin-bottom: 2vh;
+  margin-top: 1vh;
 }
 .kmitl-logo {
   height: inherit;
 }
 .block-chart {
   width: 100%;
-  margin-top: 10vh;
-  margin-bottom: 10vh;
+  margin-top: 5vh;
+  margin-bottom: 5vh;
 }
 .btn-start {
   display: flex;
