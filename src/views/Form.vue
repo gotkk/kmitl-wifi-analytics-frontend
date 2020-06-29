@@ -2,14 +2,15 @@
   <div class="form">
     <SignalDbmDetail
       :form-data="form_data"
-      v-if="signal_loaded"
+      v-if="dbm_loaded"
       key="if-building"
     />
+    <SignalDbmCountChart v-if="ch_loaded && ch_counter.length > 0" :ch-counter="ch_counter" />
     <v-container>
       <ThePercentageCriteria :percent-list="percentList" />
     </v-container>
     <SignalDbmTable
-      v-if="signal_loaded && signal_dbm.length > 0"
+      v-if="dbm_loaded && signal_dbm.length > 0"
       key="if-signal-loaded"
     />
   </div>
@@ -19,6 +20,7 @@
 import ThePercentageCriteria from "../components/ThePercentageCriteria";
 import SignalDbmDetail from "../components/SignalDbmDetail";
 import SignalDbmTable from "../components/SignalDbmTable";
+import SignalDbmCountChart from "../components/SignalDbmCountChart";
 import { mapState } from "vuex";
 import Fn from "../functions";
 const { percentCriteria } = require("../data");
@@ -29,18 +31,20 @@ export default {
     ThePercentageCriteria,
     SignalDbmDetail,
     SignalDbmTable,
+    SignalDbmCountChart,
   },
   data() {
     return {
-      signal_loaded: false,
-      building_code: "",
-      form_id: "",
+      dbm_loaded: false,
+      ch_loaded: false,
       signal_dbm: [],
       form_data: [],
+      ch_counter: [],
     };
   },
   mounted() {
     this.initialFormData();
+    this.initialChannelCounter();
   },
   computed: {
     ...mapState({
@@ -49,11 +53,15 @@ export default {
     percentList() {
       return percentCriteria;
     },
+    form_id() {
+      return this.$router.history.current.params.form_id;
+    },
+    building_code() {
+      return this.$router.history.current.params.building_code;
+    },
   },
   methods: {
     initialFormData() {
-      this.building_code = this.$router.history.current.params.building_code;
-      this.form_id = this.$router.history.current.params.form_id;
       if (this.$store.getters.form === "") {
         // this.$router.push("/visualize");
         this.$store
@@ -81,7 +89,7 @@ export default {
           console.log(err);
         })
         .finally(() => {
-          this.signal_loaded = true;
+          this.dbm_loaded = true;
         });
     },
     getFormSelect(form) {
@@ -93,6 +101,19 @@ export default {
         }
       }
       this.form_data = Fn.mapSignalDbmData(form_select);
+    },
+    initialChannelCounter() {
+      this.$store
+        .dispatch("getChannelCounter", this.form_id)
+        .then((res) => {
+          this.ch_counter = [...res];
+        })
+        .catch((err) => {
+          console.log(err);
+        })
+        .finally(() => {
+          this.ch_loaded = true;
+        });
     },
   },
 };

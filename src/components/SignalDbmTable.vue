@@ -1,9 +1,9 @@
 <template>
   <div class="signal-dbm-table">
     <v-container>
-      <v-row>
-        <v-col>
-          <v-card class="elevation-6">
+      <v-card class="elevation-6 mb-4">
+        <v-row>
+          <v-col>
             <v-card-title>
               <div style="width: 100%">
                 <v-row>
@@ -44,9 +44,9 @@
                 </div>
               </template>
             </v-data-table>
-          </v-card>
-        </v-col>
-      </v-row>
+          </v-col>
+        </v-row>
+      </v-card>
     </v-container>
   </div>
 </template>

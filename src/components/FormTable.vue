@@ -1,9 +1,9 @@
 <template>
   <div class="form-table">
     <v-container>
-      <v-row>
-        <v-col>
-          <v-card class="elevation-6">
+      <v-card class="elevation-6 mb-4">
+        <v-row>
+          <v-col>
             <v-card-title>
               <div style="width: 100%">
                 <v-row>
@@ -61,9 +61,9 @@
                 </v-chip>
               </template>
             </v-data-table>
-          </v-card>
-        </v-col>
-      </v-row>
+          </v-col>
+        </v-row>
+      </v-card>
     </v-container>
   </div>
 </template>
@@ -78,7 +78,11 @@ export default {
     return {
       search_value: "",
       headers: [
-        { text: "Percentage (average)", value: "average_percent", class: "grey lighten-2" },
+        {
+          text: "Percentage (average)",
+          value: "average_percent",
+          class: "grey lighten-2",
+        },
         { text: "Form ID", value: "form_id", class: "grey lighten-2" },
         { text: "Timestamp", value: "timestamp", class: "grey lighten-2" },
         // {

@@ -1,7 +1,7 @@
 <template>
   <div class="signal-dbm-detail">
     <v-container>
-      <v-card class="elevation-6 block-building-data">
+      <v-card class="elevation-6 pl-6 pt-6 pr-6 pb-6 mt-4">
         <v-row>
           <v-col cols="12">
             <div class="d-flex justify-center">
@@ -45,7 +45,4 @@ export default {
 </script>
 
 <style scoped>
-.block-building-data {
-  padding: 16px;
-}
 </style>
