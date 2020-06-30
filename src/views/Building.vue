@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="building">
     <BuildingDetail
       :building-data="building_data"
       v-if="form_loaded"
@@ -90,6 +90,17 @@ export default {
           building_select = { ...this.building[i] };
           break;
         }
+      }
+      if (
+        Object.keys(building_select).length === 0 &&
+        building_select.constructor === Object
+      ) {
+        this.$router.push({ name: "Visualize" });
+        this.$fire({
+          title: "Error",
+          text: "Invalid the building code",
+          type: "error",
+        });
       }
       this.building_data = Fn.mapFormData(building_select);
     },
