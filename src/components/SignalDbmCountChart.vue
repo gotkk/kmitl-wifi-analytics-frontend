@@ -47,6 +47,7 @@ export default {
             {
               label: "WiFi Channel",
               data: [...this.count],
+              backgroundColor: "rgba(234,125,58, 0.8)",
               borderColor: "#000000",
               borderWidth: 2,
               fill: true,
@@ -55,6 +56,15 @@ export default {
         },
         options: {
           responsive: true,
+          scales: {
+            yAxes: [
+              {
+                ticks: {
+                  beginAtZero: true,
+                },
+              },
+            ],
+          },
         },
       });
     },

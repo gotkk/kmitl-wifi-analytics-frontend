@@ -80,6 +80,10 @@ export default {
         { text: "Mac Address", value: "mac_address", class: "grey lighten-2" },
         { text: "Chanel", value: "chanel", class: "grey lighten-2" },
         { text: "dbm", value: "dbm", class: "grey lighten-2" },
+        { text: "download_inside", value: "download_inside", class: "grey lighten-2" },
+        { text: "download_outside", value: "download_outside", class: "grey lighten-2" },
+        { text: "youtube_cspeed", value: "youtube_cspeed", class: "grey lighten-2" },
+        { text: "note", value: "note", class: "grey lighten-2" },
       ],
     };
   },
@@ -93,6 +97,7 @@ export default {
   },
   mounted() {
     // console.log(this.getColor2.getColor);
+    console.log(this.dbm);
   },
   methods: {
     handleSelect(data) {
