@@ -1,5 +1,5 @@
 <template>
-  <div class="no-data-table">
+  <div class="the-no-data-content">
     <v-container>
       <v-row>
         <v-col>
@@ -24,7 +24,7 @@
 
 <script>
 export default {
-  name: "NoDataTable",
+  name: "TheNoDataContent",
   props: {
     title: {
       type: String,

@@ -9,7 +9,7 @@
       <ThePercentageCriteria :percent-list="percentList" />
     </v-container>
     <FormTable v-if="form_loaded && form.length > 0" key="if-form" />
-    <NoDataTable
+    <TheNoDataContent
       v-else-if="form_loaded"
       key="if-form"
       title="Form Data Collection"
@@ -21,7 +21,7 @@
 
 <script>
 import FormTable from "../components/FormTable";
-import NoDataTable from "../components/NoDataTable";
+import TheNoDataContent from "../components/TheNoDataContent";
 import BuildingDetail from "../components/BuildingDetail";
 import ThePercentageCriteria from "../components/ThePercentageCriteria";
 import { mapState } from "vuex";
@@ -32,7 +32,7 @@ export default {
   name: "BuildingData",
   components: {
     FormTable,
-    NoDataTable,
+    TheNoDataContent,
     BuildingDetail,
     ThePercentageCriteria,
   },

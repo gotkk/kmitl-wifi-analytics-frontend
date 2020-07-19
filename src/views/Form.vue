@@ -1,18 +1,33 @@
 <template>
   <div class="form">
-    <SignalDbmDetail
-      :form-data="form_data"
-      v-if="dbm_loaded"
-      key="if-building"
-    />
-    <SignalDbmCountChart v-if="ch_loaded && ch_counter.length > 0" :ch-counter="ch_counter" />
-    <v-container>
-      <ThePercentageCriteria :percent-list="percentList" />
-    </v-container>
-    <SignalDbmTable
-      v-if="dbm_loaded && signal_dbm.length > 0"
-      key="if-signal-loaded"
-    />
+    <div v-if="dbm_loaded && ch_loaded" key="if-loaded">
+      <SignalDbmDetail :form-data="form_data" />
+      <SignalDbmCountChart
+        v-if="ch_counter.length > 0"
+        :ch-counter="ch_counter"
+      />
+      <TheNoDataContent
+        v-else
+        key="if-signal-loaded"
+        title="KMITL WiFi Channel Counter"
+        content-type="the Form ID"
+        :content="this.form_id"
+      />
+      <v-container>
+        <ThePercentageCriteria :percent-list="percentList" />
+      </v-container>
+      <SignalDbmTable v-if="signal_dbm.length > 0" key="if-signal-loaded" />
+      <TheNoDataContent
+        v-else
+        key="if-signal-loaded"
+        title="Signal dbm Data Collection"
+        content-type="the Form ID"
+        :content="this.form_id"
+      />
+    </div>
+    <div v-else key="if-loaded">
+      <TheFullScreenOverlayLoading />
+    </div>
   </div>
 </template>
 
@@ -21,6 +36,8 @@ import ThePercentageCriteria from "../components/ThePercentageCriteria";
 import SignalDbmDetail from "../components/SignalDbmDetail";
 import SignalDbmTable from "../components/SignalDbmTable";
 import SignalDbmCountChart from "../components/SignalDbmCountChart";
+import TheFullScreenOverlayLoading from "../components/TheFullScreenOverlayLoading";
+import TheNoDataContent from "../components/TheNoDataContent";
 import { mapState } from "vuex";
 import Fn from "../functions";
 const { percentCriteria } = require("../data");
@@ -32,6 +49,8 @@ export default {
     SignalDbmDetail,
     SignalDbmTable,
     SignalDbmCountChart,
+    TheFullScreenOverlayLoading,
+    TheNoDataContent,
   },
   data() {
     return {
