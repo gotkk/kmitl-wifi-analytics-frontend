@@ -1,6 +1,6 @@
 <template>
   <div class="the-full-screen-overlay-loading">
-    <v-overlay :value="true">
+    <v-overlay :value="true" color="#ffffff" opacity="1" :dark="false">
       <v-row>
         <v-col>
           <v-progress-circular indeterminate size="64"></v-progress-circular>

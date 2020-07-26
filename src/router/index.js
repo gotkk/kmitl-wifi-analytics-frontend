@@ -4,7 +4,8 @@ import Home from "../views/Home.vue";
 import Visualize from "../views/Visualize.vue";
 import Test from "../views/Test.vue";
 import Building from "../views/Building.vue";
-import Form from '../views/Form.vue';
+import Form from "../views/Form.vue";
+import Evaluation from "../views/Evaluation.vue";
 
 Vue.use(VueRouter);
 
@@ -34,6 +35,11 @@ const routes = [
     name: "Form",
     component: Form,
   },
+  {
+    path: "/visualize/:building_code/:form_id/:mac_address",
+    name: "Evaluation",
+    component: Evaluation
+  }
 ];
 
 const router = new VueRouter({

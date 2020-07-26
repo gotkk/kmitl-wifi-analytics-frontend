@@ -1,7 +1,7 @@
 <template>
   <div class="form">
     <div v-if="dbm_loaded && ch_loaded" key="if-loaded">
-      <SignalDbmDetail :form-data="form_data" />
+      <TheHeadingDetail :detail-data="form_data" title="Form Data"/>
       <SignalDbmCountChart
         v-if="ch_counter.length > 0"
         :ch-counter="ch_counter"
@@ -25,15 +25,13 @@
         :content="this.form_id"
       />
     </div>
-    <div v-else key="if-loaded">
-      <TheFullScreenOverlayLoading />
-    </div>
+    <TheFullScreenOverlayLoading v-else key="if-loaded" />
   </div>
 </template>
 
 <script>
 import ThePercentageCriteria from "../components/ThePercentageCriteria";
-import SignalDbmDetail from "../components/SignalDbmDetail";
+import TheHeadingDetail from "../components/TheHeadingDetail";
 import SignalDbmTable from "../components/SignalDbmTable";
 import SignalDbmCountChart from "../components/SignalDbmCountChart";
 import TheFullScreenOverlayLoading from "../components/TheFullScreenOverlayLoading";
@@ -46,7 +44,7 @@ export default {
   name: "Form",
   components: {
     ThePercentageCriteria,
-    SignalDbmDetail,
+    TheHeadingDetail,
     SignalDbmTable,
     SignalDbmCountChart,
     TheFullScreenOverlayLoading,
@@ -73,10 +71,10 @@ export default {
       return percentCriteria;
     },
     form_id() {
-      return this.$router.history.current.params.form_id;
+      return this.$router?.history?.current?.params?.form_id;
     },
     building_code() {
-      return this.$router.history.current.params.building_code;
+      return this.$router?.history?.current?.params?.building_code;
     },
   },
   methods: {

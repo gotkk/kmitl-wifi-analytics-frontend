@@ -1,29 +1,29 @@
 <template>
   <div class="building">
-    <BuildingDetail
-      :building-data="building_data"
-      v-if="form_loaded"
-      key="if-building"
-    />
-    <v-container>
-      <ThePercentageCriteria :percent-list="percentList" />
-    </v-container>
-    <FormTable v-if="form_loaded && form.length > 0" key="if-form" />
-    <TheNoDataContent
-      v-else-if="form_loaded"
-      key="if-form"
-      title="Form Data Collection"
-      content-type="the building code"
-      :content="this.building_code"
-    />
+    <div v-if="form_loaded" key="if-load">
+      <TheHeadingDetail :detail-data="building_data" title="Building Data"/>
+      <v-container>
+        <ThePercentageCriteria :percent-list="percentList" />
+      </v-container>
+      <FormTable v-if="form_loaded && form.length > 0" key="if-form" />
+      <TheNoDataContent
+        v-else
+        key="if-form"
+        title="Form Data Collection"
+        content-type="the building code"
+        :content="this.building_code"
+      />
+    </div>
+    <TheFullScreenOverlayLoading v-else key="if-loaded" />
   </div>
 </template>
 
 <script>
 import FormTable from "../components/FormTable";
 import TheNoDataContent from "../components/TheNoDataContent";
-import BuildingDetail from "../components/BuildingDetail";
+import TheHeadingDetail from "../components/TheHeadingDetail";
 import ThePercentageCriteria from "../components/ThePercentageCriteria";
+import TheFullScreenOverlayLoading from "../components/TheFullScreenOverlayLoading";
 import { mapState } from "vuex";
 import Fn from "../functions";
 const { percentCriteria } = require("../data");
@@ -33,8 +33,9 @@ export default {
   components: {
     FormTable,
     TheNoDataContent,
-    BuildingDetail,
+    TheHeadingDetail,
     ThePercentageCriteria,
+    TheFullScreenOverlayLoading,
   },
   data() {
     return {

@@ -102,10 +102,14 @@ export default {
   methods: {
     handleSelect(data) {
       console.log(data);
-      let { building_code, form_id } = data;
+      let { building_code, form_id, mac_address } = data;
       this.$router.push({
-        name: "Form",
-        params: { building_code: building_code, form_id: form_id },
+        name: "Evaluation",
+        params: {
+          building_code: building_code,
+          form_id: form_id,
+          mac_address: mac_address,
+        },
       });
     },
   },
