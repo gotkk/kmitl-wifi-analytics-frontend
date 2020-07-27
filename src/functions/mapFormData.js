@@ -1,53 +1,79 @@
-function mapFormData(building) {
+function mapFormData(form) {
   let {
-    buildingCode,
-    buildingName,
-    max,
-    min,
-    avg_percent,
-    quantity,
-  } = building;
-  let form_data = [
-    [
-      {
-        label: "Building Code",
-        value: buildingCode,
-        percent: false,
-      },
-      {
-        label: "Building Name",
-        value: buildingName,
-        percent: false,
-      },
-    ],
-    [
-      {
-        label: "Max of Access Point dbm",
-        value: max,
-        percent: true,
-      },
-      {
-        label: "Min of Access Point dbm",
-        value: min,
-        percent: true,
-      },
-    ],
-    [
-      {
-        label: "Form Data Collection Quantity",
-        value: quantity,
-        percent: false,
-        select: false,
-      },
-      {
-        label: "Building Percentage (Average)",
-        value: avg_percent,
-        percent: true,
-        select: false,
-      },
-    ],
-  ];
-  return form_data;
+      average_percent,
+      // max,
+      // min,
+      building_code,
+      building_name,
+      detail,
+      floor,
+      form_id,
+      quantity,
+      timestamp,
+    } = form;
+    let form_data = [
+      [
+        {
+          label: "Building Code",
+          value: building_code,
+          percent: false,
+        },
+        {
+          label: "Building Name",
+          value: building_name,
+          percent: false,
+        },
+      ],
+      [
+        {
+          label: "Form ID",
+          value: form_id,
+          percent: false,
+        },
+        {
+          label: "Timestamp",
+          value: timestamp,
+          percent: false,
+        },
+      ],
+      // [
+      //   {
+      //     label: "Max of Form Data Collection",
+      //     value: max,
+      //     percent: true,
+      //   },
+      //   {
+      //     label: "Min of Form Data Collection",
+      //     value: min,
+      //     percent: true,
+      //   },
+      // ],
+      [
+        {
+          label: "Floor",
+          value: floor,
+          percent: false,
+        },
+        {
+          label: "Detail",
+          value: detail,
+          percent: false,
+        },
+      ],
+      [
+        {
+          label: "Signal dbm Quantity",
+          value: quantity,
+          percent: false,
+        },
+        {
+          label: "Form Data Collection Percentage",
+          value: average_percent,
+          percent: true,
+        },
+      ],
+    ];
+    return form_data;
 }
 
 export default mapFormData;

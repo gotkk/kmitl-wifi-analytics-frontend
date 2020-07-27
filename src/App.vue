@@ -25,4 +25,9 @@ export default {
   width: 100vw;
   height: 100vh;
 }
+.block-ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 </style>

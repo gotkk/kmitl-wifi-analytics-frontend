@@ -1,7 +1,7 @@
 <template>
   <div class="the-heading-detail-text-field">
     <span class="text-title">{{ label }}</span>
-    <div class="block-text-field" @click="handleSelect">
+    <div class="block-text-field block-ellipsis" @click="handleSelect">
       <span v-if="percent" key="if-percent"
         >{{ Math.round(value * 100) / 100 }} %</span
       >
@@ -55,8 +55,5 @@ export default {
 }
 .text-title {
   font-size: 14px;
-}
-.building-detail-text-field {
-  background-color: red;
 }
 </style>

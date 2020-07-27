@@ -1,7 +1,7 @@
 <template>
   <div class="evaluation">
     <div>
-      <TheHeadingDetail :detail-data="dbm_data" title="Signal dbm Data"/>
+      <TheHeadingDetail :detail-data="signal_dbm_data" title="Signal dbm Data"/>
     </div>
   </div>
 </template>
@@ -17,7 +17,7 @@ export default {
   },
   data() {
     return {
-      dbm_data: [],
+      signal_dbm_data: [],
     };
   },
   computed: {
@@ -65,7 +65,7 @@ export default {
           break;
         }
       }
-      this.dbm_data = Fn.mapEvData(dbm_select);
+      this.signal_dbm_data = Fn.mapSignalDbmData(dbm_select);
     },
   },
 };

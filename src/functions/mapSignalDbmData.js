@@ -1,79 +1,74 @@
-function mapSignalDbmData(form) {
-    let {
-        average_percent,
-        // max,
-        // min,
-        building_code,
-        building_name,
-        detail,
-        floor,
-        form_id,
-        quantity,
-        timestamp,
-      } = form;
-      let signal_dbm_data = [
-        [
-          {
-            label: "Building Code",
-            value: building_code,
-            percent: false,
-          },
-          {
-            label: "Building Name",
-            value: building_name,
-            percent: false,
-          },
-        ],
-        [
-          {
-            label: "Form ID",
-            value: form_id,
-            percent: false,
-          },
-          {
-            label: "Timestamp",
-            value: timestamp,
-            percent: false,
-          },
-        ],
-        // [
-        //   {
-        //     label: "Max of Form Data Collection",
-        //     value: max,
-        //     percent: true,
-        //   },
-        //   {
-        //     label: "Min of Form Data Collection",
-        //     value: min,
-        //     percent: true,
-        //   },
-        // ],
-        [
-          {
-            label: "Floor",
-            value: floor,
-            percent: false,
-          },
-          {
-            label: "Detail",
-            value: detail,
-            percent: false,
-          },
-        ],
-        [
-          {
-            label: "Signal dbm Quantity",
-            value: quantity,
-            percent: false,
-          },
-          {
-            label: "Form Data Collection Percentage",
-            value: average_percent,
-            percent: true,
-          },
-        ],
-      ];
-      return signal_dbm_data;
+function mapSignalDbmData(signal_dbm) {
+  let {
+    ssid,
+    mac_address,
+    chanel,
+    dbm,
+    download_inside,
+    download_outside,
+    youtube_cspeed,
+    percent,
+    note,
+
+  } = signal_dbm;
+  let signal_dbm_data = [
+    [
+      {
+        label: "SSID",
+        value: ssid,
+        percent: false,
+      },
+      {
+        label: "Mac Address",
+        value: mac_address,
+        percent: false,
+      },
+      {
+        label: "Channel",
+        value: chanel,
+        percent: false,
+      },
+      {
+        label: "dbm",
+        value: dbm,
+        percent: false,
+      },
+    ],
+    [
+      {
+        label: "Download Inside",
+        value: download_inside,
+        percent: false,
+        select: false,
+      },
+      {
+        label: "Download Outside",
+        value: download_outside,
+        percent: false,
+        select: false,
+      },
+    ],
+    [
+      {
+        label: "Youtube Connection Speed",
+        value: youtube_cspeed,
+        percent: false,
+      },
+      {
+        label: "Average",
+        value: percent,
+        percent: true,
+      },
+    ],
+    [
+      {
+        label: "Note",
+        value: note,
+        percent: false,
+      },
+    ],
+  ];
+  return signal_dbm_data;
 }
 
 export default mapSignalDbmData;

@@ -117,7 +117,7 @@ export default {
           break;
         }
       }
-      this.form_data = Fn.mapSignalDbmData(form_select);
+      this.form_data = Fn.mapFormData(form_select);
     },
     initialChannelCounter() {
       this.$store

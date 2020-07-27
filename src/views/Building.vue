@@ -103,7 +103,7 @@ export default {
           type: "error",
         });
       }
-      this.building_data = Fn.mapFormData(building_select);
+      this.building_data = Fn.mapBuildingData(building_select);
     },
   },
 };
