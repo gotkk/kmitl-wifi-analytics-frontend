@@ -30,7 +30,7 @@
               :search="search_value"
               @click:row="handleSelect"
             >
-              <template v-slot:item.percent="{ item }">
+              <template v-slot:[`item.percent`]="{ item }">
                 <div style="width: 150px">
                   <v-progress-linear
                     :value="item.percent"

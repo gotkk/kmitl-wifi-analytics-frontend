@@ -45,7 +45,7 @@ module.exports = {
     {
       min: null,
       max: null,
-      value: "No Data",
+      value: "No Data or Data is invalid",
       color: "#546E7A",
     },
   ],

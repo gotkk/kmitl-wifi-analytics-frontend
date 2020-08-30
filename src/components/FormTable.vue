@@ -30,7 +30,7 @@
               :search="search_value"
               @click:row="handleSelect"
             >
-              <template v-slot:item.average_percent="{ item }">
+              <template v-slot:[`item.average_percent`]="{ item }">
                 <!-- <v-chip
                   v-if="item.average_percent"
                   :color="getColorPercent(item.average_percent)"
@@ -50,13 +50,13 @@
                   </v-progress-linear>
                 </div>
               </template>
-              <template v-slot:item.max="{ item }">
+              <template v-slot:[`item.max`]="{ item }">
                 <v-chip v-if="item.max" :color="getColorPercent(item.max)" dark>
                   {{ item.max }} %
                 </v-chip>
               </template>
-              <template v-slot:item.min="{ item }">
-                <v-chip v-if="item.min" :color="getColorPercent(item.min)" dark>
+              <template v-slot:[`item.min`]="{ item }">
+                <v-chip v-if="item.min !== undefined" :color="getColorPercent(item.min)" dark>
                   {{ item.min }} %
                 </v-chip>
               </template>
