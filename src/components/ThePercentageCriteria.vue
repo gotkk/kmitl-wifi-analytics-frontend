@@ -17,11 +17,11 @@
             ></div>
           </div>
         </v-col>
-        <v-col cols="5" sm="2" lg="1">
+        <v-col cols="3" sm="2" lg="1">
           <span>{{ item.min }} - {{ item.max }}</span>
           <span v-if="item.min !== null" key="if-percent_min">%</span>
         </v-col>
-        <v-col cols="5" sm="2" lg="1">
+        <v-col cols="7" sm="9">
           <span>{{ item.value }}</span>
         </v-col>
       </v-row>
