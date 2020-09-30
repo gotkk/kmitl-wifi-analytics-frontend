@@ -10,6 +10,10 @@ Create environment variables (.env) file in directory of the project and edit (.
 VUE_APP_VAP_BACKEND_APP=URL
 ```
 * URL is the domain of running backend application such as [http://127.0.0.1:5000/]
+```
+VUE_APP_GOOGLE_MAP_API=key
+```
+* key is the google map API key.
 
 ### Installing
 Project setup
